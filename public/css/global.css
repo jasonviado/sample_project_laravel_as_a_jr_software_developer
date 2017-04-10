@@ -1,0 +1,169 @@
+.header{
+    width: 100%;
+}
+.left_nav{
+    float: left;
+    width: 50%;
+}
+.left_nav ul li{
+    padding: 10px;
+    border: 1px solid black;
+    display: inline-block;
+}
+.right_nav{
+    float: right;
+    width: 50%;
+    text-align: right;
+}
+.right_nav ul{
+    margin-right: 30px;
+}
+.right_nav ul li{
+    padding: 10px;
+    border: 1px solid black;
+    display: inline-block;
+}
+.body{
+    clear: both;
+    margin: 30px;
+}
+.body .body_left{
+    width: 24%;
+    float: left;
+}
+.body .body_center{
+    width: 50%;
+    float: left;
+}
+.body .body_center textarea{
+    width: 90%;
+    height: 50px;
+    color: black;
+}
+.body .body_center .text_area{
+    width: 100%;
+}
+.body .body_right{
+    width: 24%;
+    float: left;
+}
+/*.post{*/
+    /*padding-top: 20px;*/
+    /*width: 100%;*/
+/*}*/
+.post .indi_post{
+    width: 100%;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.post .indi_post label{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.post .indi_post .content{
+    width: 100%;
+    border-bottom: 1px solid black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.post .indi_post span{
+    font-size: 10px;
+}
+#thisLike{
+    padding-bottom: 20px;
+}
+footer{
+    clear:both;
+}
+
+.message-box{
+    height: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+
+}
+.chat-box{
+    cursor: pointer;
+
+}
+.mychat{
+    width: 100%;
+    text-align: right;
+}
+.load_more,.create_group,.open_group{
+    cursor: pointer;
+}
+.color-red{
+    color: red;
+}
+.friends-button,.friends-button1,.pending-button,.pending-button1,.group-button,.group-button1,.pointer_cursor{
+    cursor: pointer;
+}
+.right_body{
+    text-align: right;
+    max-height: 85vh;
+    height: 85vh;
+    overflow-y: auto;
+}
+.viewGroupMembers,.addGroupMembers{
+    display: none;
+    width: 200px;
+}
+.groupMemberlist,.groupMemberAddlist{
+    position: absolute;
+    border: 1px solid gray;
+    background-color: white;
+    width: 200px;
+    height: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+.all_my_friends,.chat-footer{
+    width: 270px;
+    position: relative;
+    float: left;
+}
+.list_friends{
+    cursor: pointer;
+    position: absolute;
+    border: 1px solid black;
+    border-bottom: 0;
+    color: red;
+    height: 240px;
+    bottom: 32px;
+    background-color: gray;
+    overflow-y: auto;
+    width: 250px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin: 5px;
+    padding: 15px;
+}
+.chat-container{
+    position: absolute;
+    bottom: 37PX;
+    background-color: gray;
+    height: 300px;
+    max-height: 300px;
+    padding: 10px;
+    border: 1px solid black;
+    border-bottom: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.chat-messages{
+    height: 250px;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: white;
+    color: gray;
+    font-size: 10px;
+    border-radius: 5px;
+}
+#send-message #message{
+    color: gray;
+    width: 196px;
+}
