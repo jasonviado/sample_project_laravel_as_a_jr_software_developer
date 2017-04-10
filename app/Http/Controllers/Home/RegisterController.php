@@ -33,7 +33,7 @@ class RegisterController extends Controller{
         if($validator->fails()){
             return array(
                 'status' => 'error',
-                'messages' => $validator->errors
+                'messages' => $validator->errors()
             );
         }else{
             $users = new User();
