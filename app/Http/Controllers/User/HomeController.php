@@ -132,7 +132,7 @@ class HomeController extends Controller{
         $chat = new Message();
         $chat->user_id = Auth::user()->id;
         $chat->friend_user_id = $request->id;
-        $chat->message = $request->message;
+        $chat->message = htmlspecialchars($request->message);
         if($chat->save()){
             return array(
                 'status' => 'success',
