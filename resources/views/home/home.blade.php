@@ -1,7 +1,7 @@
 {{ Theme::asset()->add('home-js','js/home.js') }}
 {{ Theme::asset()->add('global-js','js/global.js') }}
 <input type="hidden" id="room" name="room" value="{{ Auth::user()->id }}">
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -14,10 +14,13 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="{{ URL('/') }}/profile">Profile</a>
+                    <a href="{{ URL('/home') }}">Home</a>
                 </li>
                 <li>
-                    <a href="{{ URL('/') }}/messages">Messages</a>
+                    <a href="{{ URL('/profile') }}">Profile</a>
+                </li>
+                <li>
+                    <a href="{{ URL('/messages') }}">Messages</a>
                 </li>
             </ul>
             <form class="navbar-form navbar-right" role="search">
@@ -36,33 +39,8 @@
         </div>
     </div>
 </nav>
-<div>
-    <div class="modal" id="chat-modal" data-backdrop="static">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="modal-header">
-                    </div>
-                    <div class="modal-body col-md-12">
-                        <div id="removethisClass">
 
-                        </div>
-                        <form id="send-message" class="col-md-12">
-                            <input type="hidden" id="send_to_user" name="send_to_user" value="">
-                            <textarea id="message" name="message" class="col-md-12">
-
-                            </textarea>
-                            <button id="sends" type="button">Send</button>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn close-chat-modal" data-dismiss="modal">CLOSE</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+<div style="padding-bottom: 25px;padding-top: 80px;">
     <div class="modal" id="create-group-modal" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -86,6 +64,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal" id="view-group-modal" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -127,6 +106,7 @@
             </div>
         </div>
     </div>
+
     <div class="container text-center">
         <div class="row">
             <div class="col-sm-3 well">
@@ -134,25 +114,47 @@
                     <p>Hello {{ Auth::user()->name }}!</p>
                     <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
                 </div>
-                <div class="well">
-                    <p><a href="#">Interests</a></p>
-                    <p>
-                        <span class="label label-default">News</span>
-                        <span class="label label-primary">W3Schools</span>
-                        <span class="label label-success">Labels</span>
-                        <span class="label label-info">Football</span>
-                        <span class="label label-warning">Gaming</span>
-                        <span class="label label-danger">Friends</span>
-                    </p>
+<!--                <div class="well">-->
+<!--                    <p><a href="#">Interests</a></p>-->
+<!--                    <p>-->
+<!--                        <span class="label label-default">News</span>-->
+<!--                        <span class="label label-primary">W3Schools</span>-->
+<!--                        <span class="label label-success">Labels</span>-->
+<!--                        <span class="label label-info">Football</span>-->
+<!--                        <span class="label label-warning">Gaming</span>-->
+<!--                        <span class="label label-danger">Friends</span>-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--                <div class="alert alert-success fade in">-->
+<!--                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>-->
+<!--                    <p><strong>Ey!</strong></p>-->
+<!--                    People are looking at your profile. Find out who.-->
+<!--                </div>-->
+<!--                <p><a href="#">Link</a></p>-->
+<!--                <p><a href="#">Link</a></p>-->
+<!--                <p><a href="#">Link</a></p>-->
+                <hr>
+                <div>
+                    <span class="pending-button">Pending Friend Requests</span>(<span class="pending-count"></span>)
                 </div>
-                <div class="alert alert-success fade in">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                    <p><strong>Ey!</strong></p>
-                    People are looking at your profile. Find out who.
+                <div class="list_friends_request">
+
                 </div>
-                <p><a href="#">Link</a></p>
-                <p><a href="#">Link</a></p>
-                <p><a href="#">Link</a></p>
+                <hr>
+                <div>
+                    Confirm Friend Requests
+                </div>
+                <div class="list_confirm_friends_request">
+
+                </div>
+                <hr>
+                <div>
+                    Find Friends
+                </div>
+                <div class="list_find_friends">
+
+                </div>
+                <hr>
             </div>
             <div class="col-sm-7">
                     <div class="panel-body">
@@ -187,31 +189,6 @@
                     <p>ADS</p>
                 </div>
             </div>
-            <hr>
-            <div>
-                <span class="pending-button">(show)</span><span class="pending-button1">(hide)</span>Pending Friend Requests(<span class="pending-count"></span>)
-            </div>
-            <div class="list_friends_request">
-
-            </div>
-            <hr>
-            <div>
-                Confirm Friend Requests
-            </div>
-            <div class="list_confirm_friends_request">
-
-            </div>
-            <hr>
-            <div>
-                Find Friends
-            </div>
-            <div class="list_find_friends">
-
-            </div>
-            <hr>
-
-
-
         </div>
     </div>
 </div>

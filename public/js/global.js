@@ -150,6 +150,7 @@ function loadFriendMessagesGlobal(id){
                     content = content + '<p>Others : '+ item.message +'</p>';
                 }
             });
+
             if(count == 0){
                 $('#chat'+id+' .chat-messages').html('No Messages');
             }else{

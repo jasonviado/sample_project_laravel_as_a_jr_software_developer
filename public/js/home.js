@@ -153,14 +153,13 @@ $(document).ready(function(){
 
 
     $('.pending-button').on('click',function(){
-        $('.pending-button1').css('display','inline-block');
-        $('.pending-button').css('display','none');
-        $('.hide-show-friends-pending').css('display','inline-block');
-    });
-    $('.pending-button1').on('click',function(){
-        $('.pending-button1').css('display','none');
-        $('.pending-button').css('display','inline-block');
-        $('.hide-show-friends-pending').css('display','none');
+
+        if($('.list_friends_request').css('display') == 'none')
+        {
+            $(".list_friends_request").css('display','block');
+        }else{
+            $(".list_friends_request").css('display','none');
+        }
     });
 
     $('.group-button').on('click',function(){
@@ -257,9 +256,8 @@ function loadFriends(){
             $('.list_friends').html(content);
 
             $('.pending-count').text(count2);
-            $('.list_friends_request').html('<div class="hide-show-friends-pending">'+content2+'</div>');
-            $('.hide-show-friends-pending').css('display','none');
-            $('.pending-button1').css('display','none');
+            $('.list_friends_request').html(content2);
+            $('.list_friends_request').css('display','none');
 
         },error : function(){
             alert('error');
