@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('/login', 'Home\LoginController@login');
 //Route::get('/register','Home\RegisterController@register');
-//Route::post('registerAccount','Home\RegisterController@registerAccount');
+Route::post('registerAccount','Home\RegisterController@registerAccount');
 
 
 

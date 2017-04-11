@@ -17,10 +17,10 @@ class RegisterController extends Controller{
     }
     public function registerAccount(Request $request){
         $rules = [
-            'email' => 'required | email | unique:users,email',
+            'email2' => 'required | email | unique:users,email',
             'name' => 'required',
-            'password' => 'required',
-            'confirm_password' => 'required | same:password'
+            'password2' => 'required',
+            'confirm_password' => 'required | same:password2'
         ];
         $messages = [
             'required' => 'Field is required',
@@ -38,8 +38,8 @@ class RegisterController extends Controller{
         }else{
             $users = new User();
             $users->name = $request->name;
-            $users->email = $request->email;
-            $users->password = Hash::make($request->password);
+            $users->email = $request->email2;
+            $users->password = Hash::make($request->password2);
             if($users->save()){
                 return array(
                     'status' => 'success'

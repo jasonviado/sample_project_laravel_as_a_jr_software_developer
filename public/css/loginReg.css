@@ -51,7 +51,7 @@ h3 {
     color: #87613d;
     margin-bottom: 30px;
 }
-.signIn h3{
+.signUp h3{
     margin-top: 85px;
 }
 
@@ -95,23 +95,23 @@ button.form-btn {
 button.form-btn.sx {
     left: 0;
     border-radius: 0 0 0 5px;
-    background-color: #66ccff;
+    background-color: rgba(0, 0, 0, 0.15);
     color: #fff;
     transition:all 0.3s linear;
 }
 
 button.form-btn.sx:hover {
-    background-color:#0099cc;
+    background-color:rgba(0, 0, 0, 0.35);
     color: #fff;
 }
 
 button.form-btn.sx.back {
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: #66ccff;
     transition:all 0.3s linear;
 }
 
 button.form-btn.sx.back:hover {
-    background-color: rgba(0, 0, 0, 0.35);
+    background-color: #0099cc;
 }
 
 button.form-btn.dx {
@@ -258,4 +258,7 @@ input {
         transform: perspective(100px) translate3d(0px, 0px, 0px);
         opacity: 1;
     }
+}
+.error-message{
+    color:red;
 }

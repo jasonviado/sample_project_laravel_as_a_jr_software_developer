@@ -31,7 +31,7 @@ class LoginController extends Controller{
             'password' => 'required'
         ];
         $messages = [
-            'required' => 'required'
+            'required' => 'This is required.'
         ];
 
         $validator = Validator::make($request->all(),$rules,$messages);
@@ -39,13 +39,18 @@ class LoginController extends Controller{
         if($validator->fails()){
             return array(
                 'status' => 'error',
-                'message' => $messages
+                'messages' => $validator->errors()
             );
         }else{
             if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-                return Redirect::to('/home');
+                return array(
+                    'status' => 'success'
+                );
+
             }else{
-                return Redirect::to('/login');
+                return array(
+                    'status' => 'invalid-user'
+                );
             }
         }
 
