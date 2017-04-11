@@ -60,12 +60,22 @@ class HomeController extends Controller{
                 $all[$key] = $val->id;
             }
         }
-
+        $my_friends = $friends;
         $friends = array_diff($all,$friends);
-        $friends = User::whereIn('id',$friends)->get();
+
+        $user_data_val = [];
+        foreach($friends as $key => $val){
+            $counter = Friends::whereIn('friend_user_id',$my_friends)->where('users_id',$val)->where('status',1)->count();
+            $user_data = User::find($val);
+            $user_data_val[$key] = [
+                    'id' => $user_data->id,
+                    'name' => $user_data->name,
+                    'mutual' => $counter
+            ];
+        }
         return array(
             'status' => 'success',
-            'messages' => $friends
+            'messages' => $user_data_val
         );
     }
     public function accept_friend_request(Request $request){
@@ -125,9 +135,6 @@ class HomeController extends Controller{
             }
         }
     }
-
-
-
     public function sendMessage(Request $request){
         $chat = new Message();
         $chat->user_id = Auth::user()->id;

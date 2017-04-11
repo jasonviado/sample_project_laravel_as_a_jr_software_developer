@@ -203,6 +203,12 @@
     <div class="all_my_friends">
         <span class="friend-list">Friends</span>(<span class="friends-count"></span>)
         <div class="list_friends" style="display: none;">
+            <div class="one_one">
+
+            </div>
+            <div class="groups">
+
+            </div>
         </div>
     </div>
 </footer>

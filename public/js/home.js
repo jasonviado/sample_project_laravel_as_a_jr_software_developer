@@ -61,15 +61,6 @@ $(document).ready(function(){
             $('#send_to_user').val($(this).data('id'));
         }
     });
-
-    $("#message").on('keyup', function (e) {
-        if (e.keyCode == 13) {
-            // Do something
-        }
-    });
-
-
-
     $(document).delegate('.chat-click','click',function(){
         if($('.this-chat-'+$(this).data('id')).css('display') == 'none')
         {
@@ -86,6 +77,7 @@ $(document).ready(function(){
 
     $(document).delegate('#sends','click',function(){
        sendMessage($('#chat'+$(this).data('id')).find('#message').val(),$(this).data('id'),$('#room').val());
+        $('#chat'+$(this).data('id')).find('#message').val('');
     });
     $('#create-group-chat').ajaxForm(option);
     $('#create-group-btn').click(function(){
@@ -185,7 +177,6 @@ function loadPost(){
         url : 'get_home_post',
         success :function(data){
             $.each(data.messages,function(index,item){
-
                 content = content + '<div class="row">'+
                     '<div class="col-sm-3">'+
                         '<div class="well">'+
@@ -253,7 +244,7 @@ function loadFriends(){
                 content2 = '<p>No Friend Request Pending</p>';
             }
             $('.friends-count').text(count);
-            $('.list_friends').html(content);
+            $('.one_one').html(content);
 
             $('.pending-count').text(count2);
             $('.list_friends_request').html(content2);
@@ -287,7 +278,7 @@ function loadFindFriends(){
         url : 'get_find_friends',
         success : function(data){
             $.each(data.messages,function(index,item){
-                content = content + '<p>'+ item.name +'<button type="button" class="add_this_friend" value="'+ item.id +'">+</button></p>';
+                content = content + '<p>'+ item.name +'('+ item.mutual +')<button type="button" class="add_this_friend" value="'+ item.id +'">+</button></p>';
             });
             $('.list_find_friends').html(content);
         },error : function(){
@@ -395,7 +386,7 @@ function showFriendList(){
     });
 }
 function loadGroupChat(){
-    var content = '<p>Groups -- Groups<span class="create_group">Create</span></p>';
+    var content = '<p>Groups -- Groups &nbsp<span class="create_group">Create</span></p>';
     var count = 0;
     $.ajax({
         method: 'get',
@@ -409,7 +400,7 @@ function loadGroupChat(){
             if(count == 0){
                 content = '<p>No Group Chat</p>';
             }
-            $('.list_friends').append(content);
+            $('.groups').html(content);
         },error : function(){
             alert('error');
         }

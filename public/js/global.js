@@ -85,7 +85,7 @@ function loadFriendsGlobal(){
                 content2 = '<p>No Friend Request Pending</p>';
             }
             $('.friends-count').text(count);
-            $('.list_friends').html(content);
+            $('.one_one').html(content);
 
             $('.pending-count').text(count2);
             $('.list_friends_request').html(content2);
@@ -119,7 +119,7 @@ function loadFindFriendsGlobal(){
         url : 'get_find_friends',
         success : function(data){
             $.each(data.messages,function(index,item){
-                content = content + '<p>'+ item.name +'<button type="button" class="add_this_friend" value="'+ item.id +'">+</button></p>';
+                content = content + '<p>'+ item.name +'('+ item.mutual +')<button type="button" class="add_this_friend" value="'+ item.id +'">+</button></p>';
             });
             $('.list_find_friends').html(content);
         },error : function(){
@@ -159,7 +159,7 @@ function loadFriendMessagesGlobal(id){
     });
 }
 function loadGroupChatGlobal(){
-    var content = '';
+    var content = '<p>Groups -- Groups &nbsp<span class="create_group">Create</span></p>';
     var count = 0;
     $.ajax({
         method: 'get',
@@ -173,10 +173,7 @@ function loadGroupChatGlobal(){
             if(count == 0){
                 content = '<p>No Group Chat</p>';
             }
-
-            $('.list_group').html('<div class="hide-show-group">'+content+'</div>');
-            $('.hide-show-group').css('display','none');
-            $('.group-button1').css('display','none');
+            $('.groups').html(content);
         },error : function(){
             alert('error');
         }
