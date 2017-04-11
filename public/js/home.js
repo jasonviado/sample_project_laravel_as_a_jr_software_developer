@@ -49,10 +49,13 @@ $(document).ready(function(){
         addFriend($(this).val());
     });
     $(document).delegate('.chat-box','click',function(){
+        var numItems = $('.chat-footer').length;
         if (document.getElementById('chat'+$(this).data('id'))) {
             $(".this-chat-"+$(this).data('id')).css('display','block');
         } else {
-            $('.footer').append('<div id="chat'+$(this).data('id')+'" class="chat-footer"><span class="chat-click" data-id="'+ $(this).data('id') +'">'+ $(this).data('name') +'</span><button type="button" class="close" aria-label="Close" data-id="'+ $(this).data('id') +'"><span aria-hidden="true">&times;</span></button><div class="chat-container this-chat-'+$(this).data('id')+'"><div class="chat-messages"><p>test</p></div>' +
+            $('.footer').append('<div id="chat'+$(this).data('id')+'" class="chat-footer"><span class="chat-click" data-id="'+ $(this).data('id') +'">'+ $(this).data('name') +'</span><button type="button" class="close" aria-label="Close" data-id="'+ $(this).data('id') +'"><span aria-hidden="true">&times;</span></button><div class="chat-container this-chat-'+$(this).data('id')+'">'+
+                '<div><span class="chat-click" data-id="'+ $(this).data('id') +'">'+ $(this).data('name') +'</span><button type="button" class="close" aria-label="Close" data-id="'+ $(this).data('id') +'"><span aria-hidden="true">×</span></button></div>'+
+                '<div class="chat-messages"><p>test</p></div>' +
                 '<form id="send-message"><input type="hidden" id="send_to_user" name="send_to_user" value="'+ $(this).data('id') +'"><input id="message" name="message"><button id="sends" type="button" data-id="'+ $(this).data('id') +'">Send</button></form></div></div>');
             loadFriendMessages($(this).data('id'),$(this).data('name'));
             $('#send_to_user').val($(this).data('id'));

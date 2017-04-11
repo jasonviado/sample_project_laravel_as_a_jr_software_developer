@@ -124,7 +124,7 @@ footer{
 .all_my_friends,.chat-footer{
     width: 250px;
     position: relative;
-    float: left;
+    float: right;
     border: 1px solid white;
     margin-left: 5px;
 }
@@ -147,8 +147,7 @@ footer{
     position: absolute;
     bottom: 24PX;
     background-color: gray;
-    height: 300px;
-    max-height: 300px;
+    height: 320px;
     padding: 10px;
     border: 1px solid black;
     border-bottom: 0;
