@@ -36,7 +36,7 @@
         </div>
     </div>
 </nav>
-
+<div>
     <div class="modal" id="chat-modal" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -187,15 +187,6 @@
                     <p>ADS</p>
                 </div>
             </div>
-
-
-            <hr>
-            <div>
-                <span class="group-button">(show)</span><span class="group-button1">(hide)</span>Group Chat | <span class="create_group">Create</span>
-            </div>
-            <div class="list_group">
-
-            </div>
             <hr>
             <div>
                 <span class="pending-button">(show)</span><span class="pending-button1">(hide)</span>Pending Friend Requests(<span class="pending-count"></span>)
@@ -223,9 +214,10 @@
 
         </div>
     </div>
+</div>
 <footer class="footer navbar-fixed-bottom">
     <div class="all_my_friends">
-        <span class="friends-button">(show)</span><span class="friends-button1">(hide)</span>Friends(<span class="friends-count"></span>)
+        <span class="friend-list">Friends</span>(<span class="friends-count"></span>)
         <div class="list_friends" style="display: none;">
         </div>
     </div>

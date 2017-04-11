@@ -134,7 +134,7 @@ function loadFindFriendsGlobal(){
 }
 function loadFriendMessagesGlobal(id){
     var content = '';
-    var send_to = '';
+    var count = 0;
     $.ajax({
         method: 'get',
         url : 'getChatMessage',
@@ -143,16 +143,20 @@ function loadFriendMessagesGlobal(id){
         },
         success : function(data){
             $.each(data.messages,function(index,item){
+                count++;
                 if(item.user_id == data.current_user){
                     content = content + '<p class="mychat">ME : '+ item.message +'</p>';
                 }else{
-                    send_to = item.user_id;
                     content = content + '<p>Others : '+ item.message +'</p>';
                 }
             });
-            $('.friend-'+send_to).text('(NEW)');
-            $('.chat-'+id).html(content);
-            $(".message-box").animate({ scrollTop: $(".message-box")[0].scrollHeight });
+            if(count == 0){
+                $('#chat'+id+' .chat-messages').html('No Messages');
+            }else{
+                $('#chat'+id+' .chat-messages').html(content);
+            }
+
+            $("#chat"+id+" .chat-messages").animate({ scrollTop: $("#chat"+id+" .chat-messages")[0].scrollHeight });
         },error : function(){
             alert('error');
         }
