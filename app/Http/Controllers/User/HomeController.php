@@ -108,6 +108,7 @@ class HomeController extends Controller{
         ];
         $validator = Validator::make($request->all(),$rules,$messages);
         $friends = Friends::where('users_id',Auth::user()->id)->where('status',1)->select('friend_user_id')->get();
+
         if($validator->fails()){
             return array(
                 'status' => 'error'
@@ -115,7 +116,7 @@ class HomeController extends Controller{
         }else{
             $post = new Post();
             $post->user_id = $request->user;
-            $post->user_post = $request->post;
+            $post->user_post = htmlspecialchars($request->post);
             if($post->save()){
                 return array(
                     'status' => 'success',
@@ -131,7 +132,7 @@ class HomeController extends Controller{
         $chat = new Message();
         $chat->user_id = Auth::user()->id;
         $chat->friend_user_id = $request->id;
-        $chat->message = $request->message;
+        $chat->message = htmlspecialchars($request->message);
         if($chat->save()){
             return array(
                 'status' => 'success',

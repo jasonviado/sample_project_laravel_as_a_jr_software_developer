@@ -83,7 +83,7 @@ footer{
     overflow-y: auto;
 
 }
-.chat-box{
+.chat-box,.friend-list,.chat-click{
     cursor: pointer;
 
 }
@@ -97,7 +97,7 @@ footer{
 .color-red{
     color: red;
 }
-.friends-button,.friends-button1,.pending-button,.pending-button1,.group-button,.group-button1,.pointer_cursor{
+.friends-button,.friends-button1,.pending-button,.group-button,.group-button1,.pointer_cursor{
     cursor: pointer;
 }
 .right_body{
@@ -122,21 +122,22 @@ footer{
 }
 
 .all_my_friends,.chat-footer{
-    width: 270px;
+    width: 250px;
     position: relative;
-    float: left;
+    float: right;
+    border: 1px solid white;
+    margin-left: 5px;
 }
 .list_friends{
-    cursor: pointer;
     position: absolute;
     border: 1px solid black;
     border-bottom: 0;
     color: red;
-    height: 240px;
-    bottom: 32px;
+    height: 320px;
+    bottom: 19px;
     background-color: gray;
     overflow-y: auto;
-    width: 250px;
+    width: 235px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     margin: 5px;
@@ -144,10 +145,9 @@ footer{
 }
 .chat-container{
     position: absolute;
-    bottom: 37PX;
+    bottom: 24PX;
     background-color: gray;
-    height: 300px;
-    max-height: 300px;
+    height: 320px;
     padding: 10px;
     border: 1px solid black;
     border-bottom: 0;
@@ -165,5 +165,17 @@ footer{
 }
 #send-message #message{
     color: gray;
-    width: 196px;
+    width: 174px;
+}
+.chat-footer,button.close,.all_my_friends{
+    margin-right: 10px;
+    background: gray;
+}
+#sends{
+    color: black;
+}
+footer.footer{
+    margin: 0;
+    padding: 0;
+    border: 1px solid black;
 }

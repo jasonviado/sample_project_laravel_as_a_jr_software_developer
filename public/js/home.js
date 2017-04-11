@@ -38,7 +38,7 @@ $(document).ready(function(){
     $('.load_more').on('click',function(){
         loadPost();
     });
-    $('.create_group').on('click',function(){
+    $(document).delegate('.create_group','click',function(){
        $('#create-group-modal').modal('show');
         showFriendList();
     });
@@ -49,32 +49,43 @@ $(document).ready(function(){
         addFriend($(this).val());
     });
     $(document).delegate('.chat-box','click',function(){
+        var numItems = $('.chat-footer').length;
         if (document.getElementById('chat'+$(this).data('id'))) {
-            alert('this record already exists');
+            $(".this-chat-"+$(this).data('id')).css('display','block');
         } else {
-            $('.footer').append('<div id="chat'+$(this).data('id')+'" class="chat-footer">'+ $(this).data('name') +'<div class="chat-container"><div class="chat-messages"><p>test</p></div>' +
-                '<form id="send-message"><input type="hidden" id="send_to_user" name="send_to_user" value=""><input id="message" name="message"><button id="sends" type="button">Send</button></form></div></div>');
-
+            $('.footer').append('<div id="chat'+$(this).data('id')+'" class="chat-footer"><span class="chat-click" data-id="'+ $(this).data('id') +'">'+ $(this).data('name') +'</span><button type="button" class="close" aria-label="Close" data-id="'+ $(this).data('id') +'"><span aria-hidden="true">&times;</span></button><div class="chat-container this-chat-'+$(this).data('id')+'">'+
+                '<div><span class="chat-click" data-id="'+ $(this).data('id') +'">'+ $(this).data('name') +'</span><button type="button" class="close" aria-label="Close" data-id="'+ $(this).data('id') +'"><span aria-hidden="true">×</span></button></div>'+
+                '<div class="chat-messages"><p>test</p></div>' +
+                '<form id="send-message"><input type="hidden" id="send_to_user" name="send_to_user" value="'+ $(this).data('id') +'"><input id="message" name="message"><button id="sends" type="button" data-id="'+ $(this).data('id') +'">Send</button></form></div></div>');
             loadFriendMessages($(this).data('id'),$(this).data('name'));
+            $('#send_to_user').val($(this).data('id'));
         }
-//        $('.friend-'+$(this).data('id')).text('');
-//        $('.friend-'+$(this).data('id')).css('display','none');
-//       $('#chat-modal').modal('show');
-//        $('#send_to_user').val($(this).data('id'));
-//        $('#chat-modal textarea').val('');
-//        $('#removethisClass').removeClass();
-//        $('#chat-modal #removethisClass').addClass('message-box col-md-12 chat-'+$(this).data('id'));
-
-//       $('#chat-modal .modal-header').html($(this).data('name'));
-
     });
 
-    $(document).delegate('.chat-footer','click',function(){
-       alert();
+    $("#message").on('keyup', function (e) {
+        if (e.keyCode == 13) {
+            // Do something
+        }
     });
 
-    $('#sends').click(function(){
-       sendMessage($('#message').val(),$('#send_to_user').val(),$('#room').val());
+
+
+    $(document).delegate('.chat-click','click',function(){
+        if($('.this-chat-'+$(this).data('id')).css('display') == 'none')
+        {
+            $(".this-chat-"+$(this).data('id')).css('display','block');
+        }else{
+            $(".this-chat-"+$(this).data('id')).css('display','none');
+        }
+    });
+
+    $(document).delegate('.close','click',function(){
+        $('#chat'+$(this).data('id')).remove();
+    });
+
+
+    $(document).delegate('#sends','click',function(){
+       sendMessage($('#chat'+$(this).data('id')).find('#message').val(),$(this).data('id'),$('#room').val());
     });
     $('#create-group-chat').ajaxForm(option);
     $('#create-group-btn').click(function(){
@@ -99,10 +110,6 @@ $(document).ready(function(){
         $('.friend-'+$('#send_to_user').val()).text('');
         $('.friend-'+$('#send_to_user').val()).css('display','inline-block');
     });
-//    $(document).delegate('.like-button','click',function(){
-//
-//       alert($(this).data('id'));
-//    });
 
 
     var groupOpen = 0;
@@ -135,30 +142,24 @@ $(document).ready(function(){
 
 
 
-
-
-    $('.friends-button').on('click',function(){
-        $('.friends-button1').css('display','inline-block');
-        $('.friends-button').css('display','none');
-       $('.hide-show-friends').css('display','inline-block');
-        $('.list_friends').css('display','block');
+    $('.friend-list').on('click',function(){
+        if($('.list_friends').css('display') == 'none')
+        {
+            $(".list_friends").css('display','block');
+        }else{
+            $(".list_friends").css('display','none');
+        }
     });
-    $('.friends-button1').on('click',function(){
-        $('.friends-button1').css('display','none');
-        $('.friends-button').css('display','inline-block');
-        $('.hide-show-friends').css('display','none');
-        $('.list_friends').css('display','none');
-    });
+
 
     $('.pending-button').on('click',function(){
-        $('.pending-button1').css('display','inline-block');
-        $('.pending-button').css('display','none');
-        $('.hide-show-friends-pending').css('display','inline-block');
-    });
-    $('.pending-button1').on('click',function(){
-        $('.pending-button1').css('display','none');
-        $('.pending-button').css('display','inline-block');
-        $('.hide-show-friends-pending').css('display','none');
+
+        if($('.list_friends_request').css('display') == 'none')
+        {
+            $(".list_friends_request").css('display','block');
+        }else{
+            $(".list_friends_request").css('display','none');
+        }
     });
 
     $('.group-button').on('click',function(){
@@ -228,7 +229,7 @@ function submitPost(){
     });
 }
 function loadFriends(){
-    var content = '';
+    var content = '<p>Friends --- Friends</p>';
     var content2 = '';
     var count = 0;
     var count2 = 0;
@@ -252,14 +253,11 @@ function loadFriends(){
                 content2 = '<p>No Friend Request Pending</p>';
             }
             $('.friends-count').text(count);
-            $('.list_friends').html('<div class="hide-show-friends">'+content+'</div>');
-            $('.hide-show-friends').css('display','none');
-            $('.friends-button1').css('display','none');
+            $('.list_friends').html(content);
 
             $('.pending-count').text(count2);
-            $('.list_friends_request').html('<div class="hide-show-friends-pending">'+content2+'</div>');
-            $('.hide-show-friends-pending').css('display','none');
-            $('.pending-button1').css('display','none');
+            $('.list_friends_request').html(content2);
+            $('.list_friends_request').css('display','none');
 
         },error : function(){
             alert('error');
@@ -344,9 +342,9 @@ function loadFriendMessages(id){
             $.each(data.messages,function(index,item){
                 count++;
                 if(item.user_id == data.current_user){
-                    content = content + '<p class="mychat">ME : '+ item.message +'</p>';
+                    content = content + '<p class="mychat">'+ item.message +'</p>';
                 }else{
-                    content = content + '<p>Others : '+ item.message +'</p>';
+                    content = content + '<p>'+ item.message +'</p>';
                 }
             });
             if(count == 0){
@@ -355,7 +353,7 @@ function loadFriendMessages(id){
                 $('#chat'+id+' .chat-messages').html(content);
             }
 
-            $(".chat-messages").animate({ scrollTop: $(".chat-messages")[0].scrollHeight });
+            $("#chat"+id+" .chat-messages").animate({ scrollTop: $("#chat"+id+" .chat-messages")[0].scrollHeight });
         },error : function(){
             alert('error');
         }
@@ -398,7 +396,7 @@ function showFriendList(){
     });
 }
 function loadGroupChat(){
-    var content = '';
+    var content = '<p>Groups -- Groups<span class="create_group">Create</span></p>';
     var count = 0;
     $.ajax({
         method: 'get',
@@ -412,10 +410,7 @@ function loadGroupChat(){
             if(count == 0){
                 content = '<p>No Group Chat</p>';
             }
-
-            $('.list_group').html('<div class="hide-show-group">'+content+'</div>');
-            $('.hide-show-group').css('display','none');
-            $('.group-button1').css('display','none');
+            $('.list_friends').append(content);
         },error : function(){
             alert('error');
         }
