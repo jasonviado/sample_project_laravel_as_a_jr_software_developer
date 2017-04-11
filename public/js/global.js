@@ -85,16 +85,11 @@ function loadFriendsGlobal(){
                 content2 = '<p>No Friend Request Pending</p>';
             }
             $('.friends-count').text(count);
-            $('.list_friends').html('<div class="hide-show-friends">'+content+'</div>');
-            $('.hide-show-friends').css('display','none');
-            $('.friends-button1').css('display','none');
+            $('.list_friends').html(content);
 
             $('.pending-count').text(count2);
-            $('.list_friends_request').html('<div class="hide-show-friends-pending">'+content2+'</div>');
-            $('.hide-show-friends-pending').css('display','none');
-            $('.pending-button1').css('display','none');
-
-
+            $('.list_friends_request').html(content2);
+            $('.list_friends_request').css('display','none');
         },error : function(){
             alert('error');
         }
