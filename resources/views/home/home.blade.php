@@ -162,9 +162,7 @@
                             <input type="hidden" name="_token" id="_token" value="{{ csrf_token()}}">
                             <input type="hidden" id="user" name="user" value="{{ Auth::user()->id }}">
                             <label>Post:</label><br>
-                            <textarea class="col-md-12" type="text" id="post" name="post">
-
-                            </textarea>
+                            <textarea class="col-md-12" type="text" id="post" name="post"></textarea>
                         </form>
                         <button id="submitPost" type="button">POST</button>
                 </div>
