@@ -163,7 +163,7 @@ footer{
     font-size: 10px;
     border-radius: 5px;
 }
-#send-message #message{
+.chat-container #message{
     color: gray;
     width: 174px;
 }

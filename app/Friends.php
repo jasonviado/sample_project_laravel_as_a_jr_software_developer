@@ -30,7 +30,6 @@ class Friends extends Model
         $friends = [];
         foreach($data as $key => $val){
             $friends[$key] = $val['id'];
-
         }
         return $friends;
     }
