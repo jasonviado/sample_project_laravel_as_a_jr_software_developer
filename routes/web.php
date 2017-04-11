@@ -56,6 +56,8 @@ Route::group(['middleware'=>['auth']],function(){
         // Messages Page
 
         Route::get('/messages', 'User\MessagesController@messages');
+        Route::get('/accountSetting', 'User\MessagesController@accountSetting');
+
 //        Route::get('get_friend_list','User\MessagesController@get_friend_list');
     });
 });

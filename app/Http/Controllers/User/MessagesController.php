@@ -11,5 +11,7 @@ class MessagesController extends Controller{
         $theme = Theme::uses('default')->layout('default');
         return $theme->of('home.messages')->render();
     }
-
+    public function accountSetting(){
+        return "Account Setting.";
+    }
 }

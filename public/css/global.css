@@ -23,6 +23,22 @@
     border: 1px solid black;
     display: inline-block;
 }
+.dropdown.nav{
+    line-height: 50px;
+}
+.dropdown.nav a{
+    color:#9d9d9d;
+}
+.dropdown.nav li a:hover{
+    color:#fff;
+    text-decoration: none;
+}
+.dropdown.nav .dropdown-menu{
+    padding: 10px;
+}
+.dropdown.nav .dropdown-menu hr{
+    margin:0;
+}
 .body{
     clear: both;
     margin: 30px;
@@ -179,3 +195,8 @@ footer.footer{
     padding: 0;
     border: 1px solid black;
 }
+/*@media screen and (max-width: 767px){
+    .dropdown.nav .dropdown-menu{
+        text-align: left;
+    }
+}*/

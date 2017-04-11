@@ -33,8 +33,17 @@
           </span>
                 </div>
             </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp{{ Auth::user()->name }}</a></li>
+            <ul class="dropdown nav navbar-nav navbar-right">
+                <li>
+                    <div class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp{{ Auth::user()->name }}</a>
+                        <span class="caret"></span></div>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url('/accountSetting')}}"><span class="glyphicon glyphicon-cog"></span> Account Setting</a> </li>
+                        <hr>
+                        <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-out"></span> logout</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
