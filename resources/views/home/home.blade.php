@@ -1,6 +1,6 @@
 {{ Theme::asset()->add('home-js','js/home.js') }}
 {{ Theme::asset()->add('global-js','js/global.js') }}
-<input type="hidden" id="room" name="room" value="{{ $user }}">
+<input type="hidden" id="room" name="room" value="{{ Auth::user()->id }}">
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
