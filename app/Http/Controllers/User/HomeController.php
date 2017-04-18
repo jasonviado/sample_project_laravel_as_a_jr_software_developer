@@ -125,7 +125,7 @@ class HomeController extends Controller{
             );
         }else{
             $post = new Post();
-            $post->user_id = $request->user;
+            $post->user_id = Auth::user()->id;
             $post->user_post = htmlspecialchars($request->post);
             if($post->save()){
                 return array(
