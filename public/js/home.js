@@ -43,9 +43,11 @@ $(document).ready(function(){
         showFriendList();
     });
     $(document).delegate('.accept_friend_request','click',function(){
+        $(this).remove();
        acceptFriend($(this).val());
     });
     $(document).delegate('.add_this_friend','click',function(){
+        $(this).remove();
         addFriend($(this).val());
     });
     $(document).delegate('.chat-box','click',function(){
@@ -61,6 +63,18 @@ $(document).ready(function(){
             $('#send_to_user').val($(this).data('id'));
         }
     });
+
+    $(document).delegate('.open_group','click',function(){
+        $('#view-group-modal').modal('show');
+        $('#send-to-group').val($(this).data('id'));
+        $('#removethisClass').removeClass();
+        $('#view-group-modal #removethisClass').addClass('message-box col-md-12 group-'+$(this).data('id'));
+        loadGroupMessage($(this).data('id'),$('#room').val());
+        $('#view-group-modal .modal-header').html($(this).data('name'));
+
+    });
+
+
     $(document).delegate('.chat-click','click',function(){
         if($('.this-chat-'+$(this).data('id')).css('display') == 'none')
         {
@@ -83,19 +97,10 @@ $(document).ready(function(){
     $('#create-group-btn').click(function(){
         $('#create-group-chat').submit();
     })
+
+
     $('#sends-group-message').click(function(){
         sendGroupMessage($('#send-to-group').val(),$('[name="_token"]').val(),$('#group_message').val());
-    });
-
-    $(document).delegate('.open_group','click',function(){
-
-        $('#view-group-modal').modal('show');
-        $('#send-to-group').val($(this).data('id'));
-        $('#removethisClass').removeClass();
-        $('#view-group-modal #removethisClass').addClass('message-box col-md-12 group-'+$(this).data('id'));
-        loadGroupMessage($(this).data('id'),$('#room').val());
-        $('#view-group-modal .modal-header').html($(this).data('name'));
-
     });
 
     $('.close-chat-modal').on('click',function(){
@@ -311,10 +316,15 @@ function addFriend(id){
             id : id
         },
         success : function(data){
-            socket.emit('load find friends',data.user);
-            socket.emit('load find friends',data.user_2);
-            socket.emit('load the post',data.user);
-            socket.emit('load the post',data.user_2);
+
+            if(data.status == 'error'){
+
+            }else{
+                socket.emit('load find friends',data.user);
+                socket.emit('load find friends',data.user_2);
+                socket.emit('load the post',data.user);
+                socket.emit('load the post',data.user_2);
+            }
         },error : function(){
             alert('error');
         }
@@ -333,7 +343,7 @@ function loadFriendMessages(id){
             $.each(data.messages,function(index,item){
                 count++;
                 if(item.user_id == data.current_user){
-                    content = content + '<p class="mychat">'+ item.message +'</p>';
+                    content = content + '<p class="mychat">ME:'+ item.message +'</p>';
                 }else{
                     content = content + '<p>'+ item.message +'</p>';
                 }

@@ -25,11 +25,13 @@ class Friends extends Model
         return Friends::where('friend_user_id',$id)->where('status',0)->join('users','tbl_friends.users_id','users.id')->select('friends_id','users_id','name','status')->get();
     }
     public function find_friends($id){
-        $data1 = Friends::where('users_id',$id)->orWhere('friend_user_id',$id)->join('users','tbl_friends.friend_user_id','users.id')->select('friend_user_id as id')->get();
-        $data = json_decode($data1,true);
+        $data1 = Friends::where('users_id',$id)->join('users','tbl_friends.friend_user_id','users.id')->select('friend_user_id as id')->get();
+        $data2 = Friends::where('friend_user_id',$id)->join('users','tbl_friends.users_id','users.id')->select('users_id as id')->get();
+        $data = json_decode($data1,true)+json_decode($data2,true);
         $friends = [];
         foreach($data as $key => $val){
             $friends[$key] = $val['id'];
+
         }
         return $friends;
     }

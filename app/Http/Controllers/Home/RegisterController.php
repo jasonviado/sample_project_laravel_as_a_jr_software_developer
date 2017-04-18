@@ -37,7 +37,7 @@ class RegisterController extends Controller{
             );
         }else{
             $users = new User();
-            $users->name = $request->name;
+            $users->name = htmlspecialchars($request->name);
             $users->email = $request->email2;
             $users->password = Hash::make($request->password2);
             if($users->save()){
